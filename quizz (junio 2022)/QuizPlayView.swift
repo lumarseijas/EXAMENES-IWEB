@@ -1,198 +1,98 @@
-mport SwiftUI
-import Foundation
+import SwiftUI
 
-struct QuizPlayView: View{
-    @Environment(ScoresModel.self) var scoresModel
-    //@Environment(\.horizontalSizeClass) var hsc
-    @Environment(QuizzesModel.self) var quizzesModel : QuizzesModel// cambiado abajo
-    @Environment(\.verticalSizeClass) var vsc
-    @State var showAlert: Bool = false
-    @State var showAlertResultRespuesta: Bool = false
-    @State var resultCheckRespuesta: Bool = false
-    @State var showAlertError: Bool = false
-    @State var showSolution: Bool = false
-    @State var msgError: String = ""{
-        didSet{
-            if !showSolution {
-                showAlertError = true
-            }
-        }
-    }
-    
-    var quizItem: QuizItem
-    
-    
-    // creo que aqui va a poner algo
-    
-    @State var respuesta: String = ""
-    
-    
-    
-    var body : some View {
-        
-        if vsc != .compact{
-            VStack(alignment: .center) {
-                cabecera
-                respuestaView
-                attachment
-                autor
-            }
-        }else{
-            VStack{
-                cabecera
-                HStack(alignment: .center){
-                    VStack{
-                        respuestaView
-                        autor
-                    }
-                    attachment
-                    
-                }
-                
-            }
-        }
-        
-    }
-    
-    var respuestaView: some View{
-        VStack{
-            TextField("Respuesta",text: $respuesta)
-                .onSubmit{ // clase 11 dic
-                    checkAnswer()
-                }
-                .alert(resultCheckRespuesta ? "Correcto!" : "Mal", isPresented: $showAlertResultRespuesta){}
-                .textFieldStyle(.roundedBorder)
-            
-            Button("Comprobar"){
-                checkAnswer()
-            }
-            
-        }
-    }
-    
-    
-    func checkAnswer(){
-        // clase del 11 dic
-        Task{
-            do{
-                if try await quizzesModel.checkAnswer(quizId: quizItem.id, answer: respuesta){
-                    showAlertResultRespuesta = true
-                    resultCheckRespuesta = true
-                    scoresModel.meter(quizItem)
-                    print("se tiene que hber metido el score")
-                    
-                }else{
-                    showAlertResultRespuesta = true
-                    resultCheckRespuesta = false
-                }
-            }catch{
-                msgError = error.localizedDescription
-                
-            }
-        }
-    }
-    
-    
-    
-    var cabecera: some View{
-        HStack{
-            //pregunta
-            Text(quizItem.question)
-                .lineLimit(3)
-                .font(.largeTitle)
-                .bold()
-                .font(.custom("Comic Sans MS", size: 24))
-                .foregroundColor(.purple)
-            //estrella
-            Button{
-                Task{
-                    do{
-                        try await quizzesModel.changeFavourites(quizItem: quizItem)
-                    }catch {
-                        throw QuizzesModelError.corruptedDataError
-                    }
-                }
-            }label:{
-                Image(systemName: quizItem.favourite ? "star.fill" : "star")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-            }
-        }
-        
-    }
-    
-    @State var rotacion: Double = 360
-    @State var escala: Double = 1
-    var attachment: some View{
-        let attachmentUrl = self.quizItem.attachment?.url
-        
-        return GeometryReader{ geometry in
-            EasyAsyncImage(url: attachmentUrl)
-                .frame(width: geometry.size.width, height:geometry.size.height)
-                .clipShape(RoundedRectangle(cornerRadius: 19))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 19)
-                        .stroke(Color.black, lineWidth: 4)
-                }
-                .saturation(self.showAlert ? 0 : 1)
-                .animation(.easeInOut, value: self.showAlert)
-                .shadow(radius: 10)
-                .rotationEffect(Angle(degrees: rotacion))
-                .scaleEffect(escala)
-            //Mejora girafoto, sale respuesta
-                .onTapGesture(count: 2){
-                    Task{
-                        do{
-                            
-                            rotacion = 180 - rotacion
-                            //escala = 3 - escala
-                            
-                            respuesta = try await quizzesModel.answer(quizId: quizItem.id)
-                        }catch {
-                            msgError = "Error"
+struct QuizPlayView: View {
+    @EnvironmentObject var model: QuizModel // Modelo para gestionar un solo quiz
+
+    @State private var respuesta: String = ""
+    @State private var showAlertResult: Bool = false
+    @State private var resultCheckRespuesta: Bool = false
+    @State private var waitingCheckRespuesta: Bool = false
+    @State private var showAlertError: Bool = false
+    @State private var msgError: String = ""
+
+    var body: some View {
+        VStack {
+            if let quiz = model.quiz {
+                cabecera(quiz)
+                adjunto(quiz)
+                respuestaView(quiz)
+                autor(quiz)
+            } else {
+                Text("Cargando un quiz...")
+                    .onAppear {
+                        Task {
+                            await model.load()
                         }
-                        
                     }
-                }
+            }
         }
-        
-        .animation(.easeInOut, value: rotacion)
         .padding()
+        .alert("Error", isPresented: $showAlertError) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(msgError)
+        }
     }
-    
-    
-    
-    var autor: some View {
-        VStack(alignment: .trailing) {
-            HStack{
-                Spacer()
-                Text(quizItem.author?.username ?? quizItem.author?
-                    .profileName ?? "Anónimo")
-                EasyAsyncImage(url: quizItem.author?.photo?.url)
-                    .frame(width: 40, height: 40)
-                    .clipShape(Circle())
-                    .overlay {
-                        Circle().stroke(Color.brown, lineWidth: 1)
-                    }
-                    .contextMenu{
-                        Button("Limpiar"){
-                            respuesta = " "
-                        }
-                        Button("Solución"){
-                            Task {
-                                do {
-                                    showSolution = true
-                                    let respuestacorrecta = try await quizzesModel.answer(quizId: quizItem.id)
-                                    respuesta = respuestacorrecta
-                                }catch {
-                                    msgError = "Error"
-                                }
-                            }
-                        }
-                        
-                    }
+
+    func cabecera(_ quiz: QuizItem) -> some View {
+        HStack {
+            Text(quiz.question)
+                .font(.largeTitle)
+                .lineLimit(3)
+                .padding()
+        }
+    }
+
+    func adjunto(_ quiz: QuizItem) -> some View {
+        let url = quiz.attachment?.url {
+            return AnyView(
+                EasyAsyncImage(url: url)
+                    .easyRectangle()
+                    .padding()
+            )
+        } 
+    }
+
+    func respuestaView(_ quiz: QuizItem) -> some View {
+        VStack {
+            TextField("Respuesta:", text: $respuesta)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+                .onSubmit {
+                    checkAnswer(quiz)
+                }
+
+            if waitingCheckRespuesta {
+                ProgressView()
+            } else {
+                Button("Comprobar") {
+                    checkAnswer(quiz)
+                }
+                .padding()
+                .alert(resultCheckRespuesta ? "¡Correcto!" : "Incorrecto", isPresented: $showAlertResult) {
+                    Button("OK", role: .cancel) {}
+                }
             }
         }
     }
-}
 
+    func autor(_ quiz: QuizItem) -> some View {
+        VStack {
+            if let author = quiz.author {
+                Text(author.username ?? "Anónimo")
+                    .font(.subheadline)
+                    .padding(.top)
+
+                if let photoURL = author.photo?.url {
+                    EasyAsyncImage(url: photoURL)
+                        .frame(width: 50, height: 50)
+                        .easyCircle()
+                }
+            } else {
+                Text("Autor desconocido")
+                    .font(.subheadline)
+            }
+        }
+    }
+
+}
