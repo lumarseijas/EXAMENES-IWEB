@@ -10,10 +10,8 @@ import Foundation
 struct QuizItem: Codable, Identifiable {
     let id: Int
     let question: String
-    //let answer: String
     let author: Author?
     let attachment: Attachment?
-    var favourite: Bool //si es false la estrella es gris y si es true es amarilla
     
     struct Author: Codable {
         let isAdmin: Bool?
