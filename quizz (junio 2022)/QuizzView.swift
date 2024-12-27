@@ -1,15 +1,8 @@
-//
-//  QuizzesView.swift
-//  Quiz
-//
-//  Created by d121 DIT UPM on 25/11/24.
-//
-
 
 import SwiftUI
 
 
-struct QuizzesView: View{
+struct QuizzView: View{
     
     @Environment(ScoresModel.self) var scoresModel
     @Environment(QuizzesModel.self) var quizzesModel:QuizzesModel

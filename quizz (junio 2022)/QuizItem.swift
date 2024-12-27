@@ -1,9 +1,6 @@
 //
 //  QuizItem.swift
-//  Quiz
-//
-//  Created by Santiago Pavón Gómez on 18/10/24.
-//
+
 
 import Foundation
 
@@ -12,7 +9,7 @@ struct QuizItem: Codable, Identifiable {
     let question: String
     let author: Author?
     let attachment: Attachment?
-    
+
     struct Author: Codable {
         let isAdmin: Bool?
         let username: String?
