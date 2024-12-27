@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "phase": "Octavos de final 2022",
+    "team1": {
+      "name": "Marruecos",
+      "flag": "https://sitio.es/morocco.png"
+    },
+    "team2": {
+      "name": "España",
+      "flag": "https://sitio.es/spain.png"
+    },
+    "winner": 1,
+    "details": "0(3)-0(0)"
+  },
+  {
+    "id": 2,
+    "phase": "Cuartos de final 2022",
+    "team1": {
+      "name": "Croacia",
+      "flag": "https://sitio.es/croatia.png"
+    },
+    "team2": {
+      "name": "Brasil",
+      "flag": "https://sitio.es/brasil.png"
+    },
+    "winner": 2,
+    "details": "0-1"
+  }
+]
