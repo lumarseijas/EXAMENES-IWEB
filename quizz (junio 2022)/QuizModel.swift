@@ -50,4 +50,20 @@ enum QuizModelError: LocalizedError {
         print(error.localizedDescription)
         }
     }
+    func load() {
+        do {
+            guard let jsonURL = Bundle.main.url(forResource:"quiz", withExtension: "json") else {
+                throw QuizModelError.internalError(msg: "No encuentro quiz.json") 
+            }
+            let data = try Data(contentsOf: jsonURL)
+                            
+            guard let quiz = try? JSONDecoder().decode(QuizItem.self, from: data)  else {
+                throw QuizModelError.corruptedDataError
+            }
+            self.quiz = quiz
+            print("Quiz cargado")
+        } catch {
+        print(error.localizedDescription)
+        }
+    }
 }
