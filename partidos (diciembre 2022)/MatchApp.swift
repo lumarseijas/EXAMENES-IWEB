@@ -1,15 +1,11 @@
 import SwiftUI
-
 @main
-struct MatchApp: App {
-    @StateObject var matchesModel = MatchesModel() 
-
-    var body: some Scene {
+struct MatchApp: App{
+    @State var model = MatchesModel()
+    var body: some Scene{
         WindowGroup {
-            NavigationStack {
-                MatchesView()
-                    .environmentObject(matchesModel) 
-            }
+            ContentView()
+                . environment (model)
         }
     }
 }
