@@ -14,7 +14,7 @@ struct FilmPlay: View{
             MyAsyncImage(url: filmItem.posterUrl)
                 .scaledToFit()
                 .clipped()
-                .saturation(self.showAlert ? 0.2 : 1)
+                .saturation(self.showAlert ? 0.1 : 1)
                 .animation(.easeInOut, value: self.showAlert)
             Spacer()
             Text("\(filmItem.question ?? "Pregunta")?")
