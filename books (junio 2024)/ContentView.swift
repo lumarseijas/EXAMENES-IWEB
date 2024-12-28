@@ -10,6 +10,11 @@ struct ContentView: View{
                         }
                     }
                 }
+                .task {
+                if model.books.isEmpty{
+                    await model.download()
+                }
+                }
                 .navigationTitle("Elija un libro")
             }
     }
