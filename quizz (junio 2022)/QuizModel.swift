@@ -33,23 +33,21 @@ enum QuizModelError: LocalizedError {
     
     // Los datos
     @Published var quiz: QuizItem? //SOLO UN QUIZ
-    func load()  async{
-        let url = "https:/core.dit.upm.es/api/quizzes/random?token=1234"
-            do {
-                let (data, response) = try await URLSession.shared.data(from: url)
-                guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-                    throw QuizModelError.httpError(msg: "error al descargar el quiz") 
-                }
-                
-                guard let quiz = try? JSONDecoder().decode(QuizItem.self, from: data)  else {
-                    throw QuizModelError.corruptedDataError
-                }
-                
-                self.quiz = quiz
 
-                print("Quiz cargado")
-            } catch {
-                print(error.localizedDescription)
+    func download()  async{
+        do {
+            let url = "https:/core.dit.upm.es/api/quizzes/random?token=1234"
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+                throw QuizModelError.httpError(msg: "error al descargar el quiz") 
+            }                
+            guard let quiz = try? JSONDecoder().decode(QuizItem.self, from: data)  else {
+                throw QuizModelError.corruptedDataError
             }
+            self.quiz = quiz
+            print("Quiz cargado")
+        } catch {
+        print(error.localizedDescription)
         }
+    }
 }

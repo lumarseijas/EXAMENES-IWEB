@@ -21,7 +21,7 @@ struct QuizPlayView: View {
                 Text("Cargando un quiz...")
                     .onAppear {
                         Task {
-                            await model.load()
+                            await model.download()
                         }
                     }
             }
