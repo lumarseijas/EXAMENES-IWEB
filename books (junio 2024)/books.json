@@ -3,32 +3,21 @@
       "id": 1,
       "book": "El Hobbit",
       "question": "Qué raza aparece en esta novela",
-      "answers": [
-        {
-          "answer": "Elfos",
-          "photo": "https://sitio.es/elfos.png"
-        },
-        {
-          "answer": "Klingos",
-          "photo": "https://sitio.es/klingos.png"
-        }
-      ],
+      "answer1": { "answer": "Elfos",
+                   "photo": "https://sitio.es/elfos.png" },
+      "answer2":  { "answer": "Klingos",
+                    "photo": "https://sitio.es/klingos.png" },
+      
       "solution": 2
     },
     {
       "id": 2,
       "book": "Roma soy yo",
       "question": "Quién es el autor",
-      "answers": [
-        {
-          "answer": "Santiago Posteguillo",
-          "photo": "https://sitio.es/posteguillo.png"
-        },
-        {
-          "answer": "Isaac Asimov",
-          "photo": "https://sitio.es/asimov.png"
-        }
-      ],
+      "answer1": { "answer": "Santiago Posteguillo",
+                   "photo": "https://sitio.es/posteguillo.png" },
+      "answer2": { "answer": "Isaac Asimov",
+                   "photo": "https://sitio.es/asimov.png" },
       "solution": 1
     }
   ] 

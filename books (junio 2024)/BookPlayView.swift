@@ -1,9 +1,8 @@
-//
-
 import SwiftUI
 struct BookPlayView: View{
     @State var showAlert: Bool = false
     @State var alertMessage: String = ""
+    @State var selected: Int = 0 
     var bookItem: BookItem
     var body : some View {
         VStack(alignment: .center) {
@@ -35,7 +34,8 @@ struct BookPlayView: View{
                     }
                 }
                 Button(bookItem.answer1?.answer ?? "Respuesta 1"){
-                    checkAnswer(selected: 1)
+                    selected = 1 
+                    checkAnswer(selected: 1) 
                     }
             }
         .padding()    
@@ -52,13 +52,14 @@ struct BookPlayView: View{
                     }
                 }
                 Button(bookItem.answer2?.answer ?? "Respuesta 2"){
-                    checkAnswer(selected: 2)
+                    selected = 2 
+                    checkAnswer(selected: 2) 
                     }
             }
         .padding()    
         }
     }
-    func checkAnswer(){
+    func checkAnswer(selected: Int){ 
         if selected == bookItem.solution {
             alertMessage = "Acertado!"
         } else {
@@ -67,4 +68,3 @@ struct BookPlayView: View{
         showAlert = true
     }
 }
-    
