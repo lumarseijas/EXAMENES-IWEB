@@ -1,5 +1,4 @@
 import SwiftUI
-
 struct PlayView: View {
     @State var showAlert: Bool = false
     @State var isCorrect: Bool? = nil // Indica si la respuesta fue correcta o no
@@ -11,12 +10,10 @@ struct PlayView: View {
             Text(matchItem.phase)
                 .font(.largeTitle)
                 .padding()
-
             // Equipos
-            Text("\(matchItem.team1.name) vs \(matchItem.team2.name)")
+            Text("\(matchItem.team1.name) vs \(matchItem.team2.name)") 
                 .font(.title2)
                 .padding(.bottom, 20)
-
             // Posibles ganadores:
             equipo1
             equipo2
@@ -30,7 +27,7 @@ struct PlayView: View {
 
     var equipo1: some View {
         HStack {
-            AsyncImage(url: matchItem.team1.flag) { phase in
+            AsyncImage(url: matchItem.team1?.flag) { phase in
                 if let image = phase.image {
                     image
                         .resizable()
@@ -39,7 +36,7 @@ struct PlayView: View {
                     ProgressView()
                 }
             }
-            Button(matchItem.team1.name) {
+            Button(matchItem.team1.name) { //AQUI ES TEAM1?.NAME ?????????
                 checkAnswer(selected: 1)
             }
             .buttonStyle(.bordered)
@@ -49,7 +46,7 @@ struct PlayView: View {
 
     var equipo2: some View {
         HStack {
-            AsyncImage(url: matchItem.team2.flag) { phase in
+            AsyncImage(url: matchItem.team2?.flag) { phase in
                 if let image = phase.image {
                     image
                         .resizable()
@@ -58,7 +55,7 @@ struct PlayView: View {
                     ProgressView()
                 }
             }
-            Button(matchItem.team2.name) {
+            Button(matchItem.team2.name) { //AQUI ES TEAM2?.NAME ?????????
                 checkAnswer(selected: 2)
             }
             .buttonStyle(.bordered)

@@ -1,5 +1,7 @@
 import SwiftUI
+
 struct ContentView: View {
+    
     @Environment(FilmsModel.self) var model: FilmsModel
     var body: some View {
         NavigationStack {
@@ -16,3 +18,5 @@ struct ContentView: View {
         }
     }
 }
+
+

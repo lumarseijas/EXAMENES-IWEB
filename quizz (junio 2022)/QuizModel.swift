@@ -1,20 +1,11 @@
-//
-//  QuizzesModel.swift
-//  Quiz
-//
-//  Created by Santiago Pavón Gómez on 18/10/24.
-//
-
 import Foundation
 import SwiftUI
-
 /// Errores producidos en el modelo de los Quizzes
 enum QuizModelError: LocalizedError {
     case internalError(msg: String)
     case corruptedDataError
     case unknownError
     case httpError(msg: String)
-
     var errorDescription: String? {
         switch self {
         case .internalError(let msg):
@@ -30,10 +21,7 @@ enum QuizModelError: LocalizedError {
 }
 
 @Observable class QuizModel { 
-    
-    // Los datos
     @Published var quiz: QuizItem? //SOLO UN QUIZ
-
     func download()  async{
         do {
             let url = "https:/core.dit.upm.es/api/quizzes/random?token=1234"

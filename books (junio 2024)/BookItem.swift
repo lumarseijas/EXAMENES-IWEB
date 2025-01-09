@@ -1,5 +1,4 @@
 import Foundation
-
 struct BookItem: Codable, Identifiable {
     let id: Int
     let book: String

@@ -17,7 +17,7 @@ struct BookPlayView: View{
             respuesta2
             }
         .padding()
-        .navigationTitle("Responde sobre") //titulo de la pantalla
+        .navigationTitle("Responde sobre") //título de la pantalla
         .alert(alertMessage, isPresented: $showAlert){
             Button("OK", role: .cancel)
         }   

@@ -4,7 +4,7 @@ struct MatchItem: Codable, Identifiable {
     let team1: Team?
     let team2: Team?
     let winner: Int
-    let details: String?
+    let details: String
 
     struct Team: Codable {
         let name: String

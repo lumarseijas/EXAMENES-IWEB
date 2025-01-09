@@ -1,8 +1,6 @@
 import SwiftUI
-
 struct MatchesView: View {
     @EnvironmentObject var model: MatchesModel
-
     var body: some View {
         NavigationStack {
             List {

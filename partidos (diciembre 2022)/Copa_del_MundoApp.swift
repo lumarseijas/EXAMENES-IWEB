@@ -1,6 +1,6 @@
 import SwiftUI
 @main
-struct MatchApp: App{
+struct Copa_del_MundoApp: App{
     @State var model = MatchesModel()
     var body: some Scene{
         WindowGroup {

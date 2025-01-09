@@ -1,6 +1,3 @@
-//
-//  QuizItem.swift
-
 import Foundation
 
 struct QuizItem: Codable, Identifiable {
@@ -14,3 +11,6 @@ struct QuizItem: Codable, Identifiable {
         let photo: URL?
     }
 }
+
+
+

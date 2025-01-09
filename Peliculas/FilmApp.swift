@@ -1,6 +1,8 @@
 import SwiftUI
+
 @main
 struct FilmApp: App{
+
     @State var model = FilmsModel()
     var body: some Scene{
         WindowGroup {
@@ -9,3 +11,6 @@ struct FilmApp: App{
         }
     }
 }
+
+
+
