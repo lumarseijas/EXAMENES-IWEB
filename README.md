@@ -1,4 +1,5 @@
-PELÍCULAS
+**PELÍCULAS**
+
 1.4. Escriba el código de la vista que implementa la primera pantalla de la app. 
 Esta vista debo mostrar un NavigationStack y una lista con la imagen y el nombre de todas las películas. 
 La pantalla debe ser similar a la del ejemplo. 
@@ -12,7 +13,9 @@ El color de la imagen debe restaurarse a su valor original cuando se oculte la a
 El cambio de color debe realizarse usando una animación. 
 •	La desaturación de la imagen se logra usando .saturation(). La saturación se cambia 0.2 cuando la alerta está activa y se restaura a 1 cuando desaparece. 
 •	La animación se aplica con .animation() para suavizar la transición del cambio de color. 
-DICIEMBRE 2022 PARTIDOS
+
+**DICIEMBRE 2022 PARTIDOS**
+
 Queremos desarrollar una app con SwiftUl para jugar a adivinar el resultado de los partidos de fútbol de las copas del mundo. Esta app debe descargar un JSON con los resultados de los partidos de un servidor web. La app mostrará una pantalla inicial con un listado de los partidos descargados. El usuario debe pulsar sobre uno de los partidos para pasar a una segunda pantalla donde jugará a adivinar quién ganó ese partido. 
 La petición HTTP que hay que invocar para bajarse el JSON con la información de los partidos es de tipo GET y la URL es https://sitio.es/partidos.json. 
 Donde: 
@@ -44,8 +47,8 @@ Suponga que el modelo MatchesModel se pasa a la vista en su environment.
 Añada una alerta que indique si la respuesta introducida por el usuario es correcta o no.
 
 
+**JUNIO 2024**
 
-JUNIO 2024
 Queremos desarrollar una app SwiftUl para jugar a responder preguntas sobre un determinado libro. 
 La app debe mostrar una pantalla inicial con una lista de libros. Entonces, el usuario debe pulsar sobre un libro de la lista, pasando a una segunda pantalla donde se mostrará la pregunta a contestar. La segunda pantalla mostrará un texto con la pregunta, y dos botones para las respuestas. El usuario debe pulsar uno de los dos botones, y la app informará de si la respuesta fue correcta o no. Las imágenes de la derecha muestran estas pantallas 
 Antes de empezar a jugar, la app debe descargar un JSON con las preguntas del juego. Debe hacer una petición HTTP a la url https://ibros.core.upm.es usando el método GET.
@@ -83,15 +86,15 @@ Al pulsar sobre un libro de la lista, la app debe navegar a una segunda pantalla
 Cuando el usuario pulse uno de los dos botones debe mostrarse una alerta informando al usuario de si ha acertado o fallado la pregunta. 
 Implemente la pantalla para que se adjunte el diseño mostrado en la imagen. 
 
-JUNIO 2022
+**JUNIO 2022**
 
 Suponga que queremos desarrollar una aplicación SwiftUl que descargue quizzes de uno en uno, y permita jugar a adivinarlos. Esta app tendrá una única vista donde se muestra el quiz al que se está jugando en cada momento. El usuario escribirá la respuesta en el campo de texto, y pulsará el botón Comprobar para ver si su respuesta es correcta o no. 
 Para descargar cada uno de los quizzes con los que se va a jugar, hay que hacer una petición HTTP a la url https:/core.dit.upm.es/api/ quizzes/random?token=1234 usando el método GET. Esta petición devuelve un objeto JSON que tiene las siguientes propiedades:  
 1. id: es un entero que identifica unívocamente al quiz. Esta propiedad siempre estará presente en todos los JSON. 
 2. question: es un string con el texto de la pregunta. Está propiedad siempre está presente en el JSON. 
 3. author: es un objeto JSON anidado con información sobre el autor del quiz, y que puede no estar presente en algunos de los objetos JSON, es decir, es opcional. Este objeto tiene las siguientes propiedades: 
-1. username: un string con el nombre del autor. Está propiedad siempre está presente. 
-2. photo: un URL con la dirección da la fotografía del autor. Está propiedad puede no estar presente, es decir, es opcional. 
+  1. username: un string con el nombre del autor. Está propiedad siempre está presente. 
+  2. photo: un URL con la dirección da la fotografía del autor. Está propiedad puede no estar presente, es decir, es opcional. 
 4. attachment un URL con la dirección de la fotografía que ilustra el quiz. Está propiedad puede no estar presente, es decir, es opcional. 
 
 1.1. Se pide escribir una struct llamada QuizItem, que sea conforme con el protocolo Codable, y que sirva para decodificar los JSON descargados por la app.
