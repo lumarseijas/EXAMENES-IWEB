@@ -1,4 +1,27 @@
-**PELÍCULAS**
+**PELÍCULAS ENERO 2024**
+
+Queremos desarrollar una app SwiftUI para jugar a responder preguntas sobre PELÍCULAS. Esta app:
+1. Descarga JSON con preguntas
+2. Pantalla inicial con pregutnas, lista de películas
+3. Segunda pantalla para jugar. Botón sí o no.
+
+donde:
+- id: entero que identifica unívocamente a cada pregunta
+- title: string con el nombre de la película
+- posterUrl: URL de la imagen del poster de la película
+- question: string con el texto de la pregunta
+- answer: booleano que indica si la respuesta de la pregunta es verdad o mentira.
+
+Todas las propiedades, excepto la propiedad posterUrl, están siempre presentes en el JSON descargado
+
+1.1. Escribir una struct llamada FilmItem conforme con los protocolos codable e identifiable y que sirva para descodificar el JSON
+
+1.2. Queremos desarrollar un FilmsModel que debe:
+- Usar Framework Observation
+- Propiedad films de tipo FilmItem
+- Método download
+
+1.3. Escriba el código que hay que añadir en la @main struct de la app para añadir una instancia del modelo FilmsModel al environment de la app.
 
 1.4. Escriba el código de la vista que implementa la primera pantalla de la app. 
 Esta vista debo mostrar un NavigationStack y una lista con la imagen y el nombre de todas las películas. 
@@ -75,7 +98,7 @@ Donde:
 
 1.2. Implemente un model llamado BooksModel que permita gestionar las preguntas y respuestas del juego sobre libros. El modelo debe cumplir las siguientes especificaciones: 
 
-1) Debe ser una clase conforme al protocolo Observable para que pueda integrarse con SwiftUI. 
+1) Debe ser una clase conforme al protocolo Observable. 
 2) Debe contener una propiedad que almacene un array de objetos, BookItem, que será utilizada por las vistas de la app para mostrar la lista de libros  y preguntas.  
 3) Debe incluir un método llamado download que permita descargar las preguntas desde un servidor remoto. este metodo debe: 
 - Realizar una petición HTTP GET a la URL https://ibros.core.upm.es  

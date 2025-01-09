@@ -1,8 +1,8 @@
 struct MatchItem: Codable, Identifiable {
     let id: Int
     let phase: String
-    let team1: Team?
-    let team2: Team?
+    let team1: Team? //nose si aqui tiene "?"
+    let team2: Team? //nose si aqui tiene "?"
     let winner: Int
     let details: String
 

@@ -5,7 +5,7 @@ struct MatchesView: View {
         NavigationStack {
             List {
                 ForEach(model.matches) { matchItem in
-                    NavigationLink {
+                    NavigationLink{
                         PlayView(matchItem: matchItem)
                     } label: {
                         MatchRow(matchItem: matchItem)

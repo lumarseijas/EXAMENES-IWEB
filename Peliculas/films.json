@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "title": "Mujeres enamoradas",
+      "posterUrl": "https://examen.dit.upm.es/me.jpg",
+      "question": "Es del año 1969",
+      "answer": true
+    },
+    {
+        "id": 2,
+        "title": "Accidental Love",
+        "posterUrl": "https://examen.dit.upm.es/me.jpg",
+        "question": "La protagonista es Jessica Biel",
+        "answer": true
+      }
+  ] 
+  

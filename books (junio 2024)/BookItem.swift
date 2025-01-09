@@ -3,10 +3,10 @@ struct BookItem: Codable, Identifiable {
     let id: Int
     let book: String
     let question: String
-    let answer1: AnswerX?
-    let answer2: AnswerX?
+    let answer1: Answer?
+    let answer2: Answer?
     let solution: Int
-    struct AnswerX: Codable {
+    struct Answer: Codable {
         let answer: String?
         let photo: URL?
     }

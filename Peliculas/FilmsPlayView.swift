@@ -5,7 +5,7 @@ struct FilmPlay: View{
     @State var showAlert = false
     var body: some View {
         VStack {
-            Text("Sobre...")
+            Text("Sobre ")
                 .font(.title) + 
             Text(filmItem.title)
                 .font(.largeTitle)

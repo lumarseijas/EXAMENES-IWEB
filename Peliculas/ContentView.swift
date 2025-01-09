@@ -15,6 +15,11 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Elija una película")
+            .task {
+                if model.films.isEmpty{
+                    await model.download()
+                }
+            }
         }
     }
 }
