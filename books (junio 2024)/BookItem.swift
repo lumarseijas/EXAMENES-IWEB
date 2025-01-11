@@ -7,7 +7,7 @@ struct BookItem: Codable, Identifiable {
     let answer2: Answer?
     let solution: Int
     struct Answer: Codable {
-        let answer: String?
+        let answer: String
         let photo: URL?
     }
 }

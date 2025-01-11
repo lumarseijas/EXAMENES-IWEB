@@ -21,19 +21,19 @@
 
     func download()  async {
         guard let url = URL(string:
-        "https://bequiet.dit.upm.es/geo2023/questions.json") else {
+        "https://bequiet.dit.upm.es/geo2023/films.json") else {
             return
         }
         print("Iniciando descarga: \(url).")
 
         guard let (data, _) = try? await URLSession.shared.data(from: url),
-            let questions = try? JSONDecoder().decode([QuestionItem].self, from: data) else {
+            let films = try? JSONDecoder().decode([FilmItem].self, from: data) else {
                 print("Error: recibidos datos corruptos.")
                 return
             }
             
             DispatchQueue.main.async {
-                self.questions = questions.shuffled()
+                self.films = films.shuffled()
                 print("Terminada la descarga")
             } 
     }

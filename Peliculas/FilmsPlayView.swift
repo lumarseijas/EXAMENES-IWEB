@@ -47,3 +47,5 @@ struct FilmPlay: View{
         showAlert = true
     }   
 }
+
+

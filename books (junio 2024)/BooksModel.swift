@@ -1,6 +1,6 @@
 @Observable class BooksModel { //modelo donde guardo mis books
     // Los datos
-    private(set) var books = [BookItem]()    
+    @Published private(set) var books = [BookItem]()    
     private static let url = "https://ibros.core.upm.es"
     func download()  async{
             do {

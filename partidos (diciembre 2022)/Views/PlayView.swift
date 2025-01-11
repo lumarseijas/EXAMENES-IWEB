@@ -11,7 +11,7 @@ struct PlayView: View {
                 .font(.largeTitle)
                 .padding()
             // Equipos
-            Text("\(matchItem.team1.name) vs \(matchItem.team2.name)") 
+            Text("\(matchItem.team1?.name ?? "Equipo 1") vs \(matchItem.team2?.name ?? "Equipo 2")")
                 .font(.title2)
                 .padding(.bottom, 20)
             // Posibles ganadores:
@@ -36,7 +36,7 @@ struct PlayView: View {
                     ProgressView()
                 }
             }
-            Button(matchItem.team1.name) { //AQUI ES TEAM1?.NAME ?????????
+            Button(matchItem.team1?.name ?? "Equipo 1") {
                 checkAnswer(selected: 1)
             }
             .buttonStyle(.bordered)
@@ -55,7 +55,7 @@ struct PlayView: View {
                     ProgressView()
                 }
             }
-            Button(matchItem.team2.name) { //AQUI ES TEAM2?.NAME ?????????
+            Button(matchItem.team2?.name ?? "Equipo 2") {
                 checkAnswer(selected: 2)
             }
             .buttonStyle(.bordered)

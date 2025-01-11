@@ -18,7 +18,7 @@ struct MatchRow: View {
                             .frame(width: 30, height: 30)
                             .clipShape(Circle()) // Bandera en forma de círculo
                             .shadow(radius: 5)
-                        Text(matchItem.team1.name) //AQUI ES TEAM1?.NAME ?????????
+                        Text(matchItem.team1?.name ?? "Desconocido") 
                             .font(.subheadline)
                     }
                     Text("vs")
@@ -28,7 +28,7 @@ struct MatchRow: View {
                             .frame(width: 30, height: 30)
                             .clipShape(Circle()) // Bandera en forma de círculo
                             .shadow(radius: 5)
-                        Text(matchItem.team2.name) //AQUI ES TEAM2?.NAME ?????????
+                        Text(matchItem.team2?.name ?? "Desconocido") 
                             .font(.subheadline)
                     }
                 }

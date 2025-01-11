@@ -11,6 +11,3 @@ struct FilmApp: App{
         }
     }
 }
-
-
-
