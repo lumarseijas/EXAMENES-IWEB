@@ -94,5 +94,18 @@ struct QuizPlayView: View {
             }
         }
     }
+func checkAnswer(_ quiz: QuizItem) {
+    waitingCheckRespuesta = true
+    Task {
+        do {
+            resultCheckRespuesta = try await model.checkAnswer(quizId: quiz.id, answer: respuesta)
+            showAlertResult = true
+        } catch {
+            msgError = error.localizedDescription
+            showAlertError = true
+        }
+        waitingCheckRespuesta = false
+    }
+}
 
 }
